@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title>Flask App</title>
+		<style type="text/css">
+			* {
+				font-family: sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Web Calculator</h1>
+        <label for="num1">Enter Number 1: </label>
+        <input type="text" id="num1" name="number1">
+        <br><br>
+        <label for="num2">Enter Number 2: </label>
+        <input type="text" id="num2" name="number2">
+        <br><br>
+		<form method="post" id="Add">
+            <button>+</button>
+		</form>
+        <form method="post" id="Sub">
+            <button>-</button>
+		</form>
+        <form method="post" id="Mul">
+            <button>*</button>
+		</form>
+        <form method="post" id="Div">
+            <button>/</button>
+		</form>
+
+		<p id="result"></p>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script>
+			$('#Add').on('submit', function(e){
+				var number1 = $('#num1').val();
+				var number2 = $('#num2').val();
+				e.preventDefault();
+				$.ajax({
+					url: 'http://127.0.0.1:5000/Add/',
+					data: {'number1': number1, 'number2': number2},
+					method: 'POST',
+					success: function(data) {
+						$('#num1').val('');
+						$('#num2').val('');
+						$('#result').html('Result is ' + data['result']);
+					}
+				});
+			});
+		</script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script>
+			$('#Sub').on('submit', function(e){
+				var number1 = $('#num1').val();
+				var number2 = $('#num2').val();
+				e.preventDefault();
+				$.ajax({
+					url: 'http://127.0.0.1:5000/Sub/',
+					data: {'number1': number1, 'number2': number2},
+					method: 'POST',
+					success: function(data) {
+						$('#num1').val('');
+						$('#num2').val('');
+						$('#result').html('Result is ' + data['result']);
+					}
+				});
+			});
+		</script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script>
+			$('#Mul').on('submit', function(e){
+				var number1 = $('#num1').val();
+				var number2 = $('#num2').val();
+				e.preventDefault();
+				$.ajax({
+					url: 'http://127.0.0.1:5000/Mul/',
+					data: {'number1': number1, 'number2': number2},
+					method: 'POST',
+					success: function(data) {
+						$('#num1').val('');
+						$('#num2').val('');
+						$('#result').html('Result is ' + data['result']);
+					}
+				});
+			});
+		</script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script>
+			$('#Div').on('submit', function(e){
+				var number1 = $('#num1').val();
+				var number2 = $('#num2').val();
+				e.preventDefault();
+				$.ajax({
+					url: 'http://127.0.0.1:5000/Div/',
+					data: {'number1': number1, 'number2': number2},
+					method: 'POST',
+					success: function(data) {
+						$('#num1').val('');
+						$('#num2').val('');
+						$('#result').html('Result is ' + data['result']);
+					}
+				});
+			});
+		</script>
+
+	</body>
+</html>
